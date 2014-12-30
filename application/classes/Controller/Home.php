@@ -4,19 +4,28 @@ class Controller_Home extends Controller_Template {
 
 	public function action_index()
 	{
+		session_start();
 		$this->template->content = View::factory('home/index');
 	}
 	
 	public function action_login()
 	{
+		session_start();
 		$user = ORM::factory('User')->where('username','=',$this->request->post('username'))->where('password','=',$this->request->post('password'))->count_all();
 		print_r($user);
 		if($user == 1)
 		{
-			session_start();
 			$_SESSION['logged_in'] = true;
 			$_SESSION['username'] = $this->request->post('username');
 		}
+		$this->redirect('home/texts');
+	}
+	
+	public function action_logout()
+	{
+		session_start();
+		$_SESSION['logged_in'] = false;
+		$_SESSION['username'] = '';
 		$this->redirect('home/texts');
 	}
 	
