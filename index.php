@@ -21,7 +21,7 @@ $modules = 'modules';
  *
  * @link http://kohanaframework.org/guide/about.install#system
  */
-$system = 'system/core';
+$system = 'core';
 
 /**
  * The default extension of resource files. If you change this, all resources
@@ -44,7 +44,8 @@ define('EXT', '.php');
  * When using a legacy application with PHP >= 5.3, it is recommended to disable
  * deprecated notices. Disable with: E_ALL & ~E_DEPRECATED
  */
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL & ~E_DEPRECATED);
+//error_reporting(E_ALL | E_STRICT);
 
 /**
  * End of standard configuration! Changing any of the code below should only be
